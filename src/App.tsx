@@ -2,6 +2,10 @@
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Layout from "./layouts/Layout";
 import Home from './pages/HomePage';
+import About from "./pages/About";
+import Privacy from './pages/Privacy';
+import Guide from './pages/Guide';
+import NotFound from "./pages/NotFound"; 
 
 
 
@@ -11,6 +15,10 @@ function App() {
       <Routes>
          <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="privacy" element={<Privacy />} />
+          <Route path="guide" element={<Guide />} />
+          <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
         </Route>
       </Routes>
     </BrowserRouter>

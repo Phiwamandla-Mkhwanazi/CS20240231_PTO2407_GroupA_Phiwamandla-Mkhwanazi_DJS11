@@ -1,0 +1,22 @@
+// pages/NotFound.jsx
+import { Link } from "react-router-dom";
+
+export default function NotFound() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white px-4">
+      <h1 className="text-6xl font-extrabold mb-6 text-[#89AC46]">404</h1>
+      <h2 className="text-2xl font-semibold mb-4 text-[#595959]">
+        Page Not Found
+      </h2>
+      <p className="mb-8 text-center text-[#595959] max-w-md">
+        Sorry, the page you’re looking for doesn’t exist or has been moved.
+      </p>
+      <Link
+        to="/"
+        className="inline-block px-6 py-3 bg-[#89AC46] text-white font-semibold rounded-md hover:bg-[#758f2d] transition"
+      >
+        Go back home
+      </Link>
+    </div>
+  );
+}
