@@ -1,12 +1,21 @@
-import './App.css'
+// App.jsx
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+import Layout from "./layouts/Layout";
+import Home from './pages/HomePage';
+
+
 
 function App() {
-
   return (
-    <>
-      <div className="flex text-2xl text-[#646cff]">Home App Page</div>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+         <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+
+export default App;
