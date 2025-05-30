@@ -40,7 +40,7 @@ A modern podcast streaming application built with React, Zustand, and TypeScript
     ⚠️ Exit warning while playing audio
 
 
-#🛠 Installation
+🛠 Installation
 
 Follow these steps to set up the project locally:
 
