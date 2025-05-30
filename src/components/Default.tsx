@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MdPlayCircleFilled } from 'react-icons/md';
-import LandingImage from '../assets/img/kali-mr-robot-augmented-reality-game-1.jpg';
+import LandingImage from '../assets/img/content-creator-using-audio-equipment.jpg';
 import PodcastPreview from '../modals/PodcastPreview';
 import { BackArrowIcon, ForwardArrowIcon } from './Icons';
 
@@ -30,7 +30,7 @@ const PodcastThumbnail = ({ image, onClick }: PodcastThumbnailProps) => (
       className="w-full h-full object-cover rounded-[20px]"
       loading="lazy"
     />
-    <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity">
+    <div className="hidden absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity">
       <MdPlayCircleFilled className="text-white text-4xl drop-shadow-lg" />
     </div>
   </div>
@@ -83,10 +83,7 @@ export function Default() {
         style={{ backgroundImage: `url(${LandingImage})` }}
       >
         <div className="absolute inset-0 z-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg" />
-        <button className="relative z-10 m-4 px-6 py-3 text-2xl font-semibold text-white bg-[#d4d0d0] opacity-40 transition-all duration-200 hover:text-[#89AC46] hover:opacity-100 hover:scale-105 shadow-xl flex items-center">
-          <i className="material-icons mr-2">play_arrow</i>
-          Play
-        </button>
+      
       </div>
 
       {/* 🎙 Recommended */}
