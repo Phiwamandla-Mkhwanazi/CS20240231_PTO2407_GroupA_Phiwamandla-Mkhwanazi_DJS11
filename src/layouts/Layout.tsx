@@ -19,7 +19,7 @@ export default function Layout()
       <Header />
 
       {/* Main content area where nested routes render */}
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 ">
         <Outlet />
       </main>
 
