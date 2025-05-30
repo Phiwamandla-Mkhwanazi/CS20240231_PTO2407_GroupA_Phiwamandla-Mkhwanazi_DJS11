@@ -1,6 +1,47 @@
 # 🎵 PODCAST APP | PORTFOLIO PIECE 💿
-[DJS11] Starter Instructions for the Final Portfolio Piece Submission 🚀
+A modern podcast streaming application built with React, Zustand, and TypeScript. It features episode playback, favourites, fuzzy search, persistent playback, and a responsive UI.
 
+🔗 Live Demo & Presentation
+
+    🌐 Website: https://podseekers.netlify.app
+
+    📽️ Presentation: https://docs.google.com/presentation/d/16vvca-ON5V3-XV3ZZuZWddHBtlAv-Dd6lhSB2oVHNkQ/edit?usp=sharing
+
+
+📦 Tech Stack
+
+    React + Vite + TypeScript
+
+    Zustand for state management
+
+    Tailwind CSS for styling
+
+    Fuse.js for fuzzy searching
+
+    React Router for navigation
+
+    React Icons for consistent iconography
+
+
+🚀 Features
+
+    🔍 Fuzzy search with debounce (title & description)
+
+    📂 Browse podcasts by category
+
+    ❤️ Save and manage favourite episodes
+
+    ▶️ Resume playback with persistent state
+
+    📱 Responsive, Desktop layout
+
+    🎛️ Audio player with progress tracking
+
+    ⚠️ Exit warning while playing audio
+
+
+# 🎵 PODCAST APP | PORTFOLIO PIECE 💿
+[DJS11] Starter Instructions for the Final Portfolio Piece Submission 🚀
 
 <!-- omit in toc -->
 **Table of Contents**
