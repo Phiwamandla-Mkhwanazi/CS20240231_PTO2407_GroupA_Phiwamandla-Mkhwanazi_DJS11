@@ -7,18 +7,14 @@ export default function ExitWarning() {
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (isPlaying) {
-        e.preventDefault();
-        e.returnValue = ''; // Required for Chrome to show confirmation dialog
-        return '';
+        e.returnValue = 'You have playback in progress. Are you sure you want to leave?';
+        return e.returnValue;
       }
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
   }, [isPlaying]);
 
-  return null; // This component does not render anything
+  return null;
 }
