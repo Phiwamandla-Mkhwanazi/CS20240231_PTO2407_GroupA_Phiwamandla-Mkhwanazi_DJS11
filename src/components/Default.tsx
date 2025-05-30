@@ -7,7 +7,13 @@ import { BackArrowIcon, ForwardArrowIcon } from './Icons';
 
 const API_URL = 'https://podcast-api.netlify.app/shows';
 
-const PodcastThumbnail = ({ image, onClick }) => (
+const PodcastThumbnail = ({
+  image,
+  onClick,
+}: {
+  image: string;
+  onClick: () => void;
+}) => (
   <div
     onClick={onClick}
     className="relative group h-[100px] w-[100px] rounded-[20px] overflow-hidden shadow-xl cursor-pointer transition-transform duration-300 hover:scale-105"
@@ -22,6 +28,7 @@ const PodcastThumbnail = ({ image, onClick }) => (
     </div>
   </div>
 );
+;
 
 export function Default()
 {
@@ -50,8 +57,9 @@ export function Default()
   };
 
   const sortedByUpdated = [...podcasts].sort(
-    (a, b) => new Date(b.updated) - new Date(a.updated)
-  );
+  (a, b) => new Date(b.updated).getTime() - new Date(a.updated).getTime()
+);
+
 
   const handleShift = (currentStart, setStart) => ({ type }) => {
     setStart((prev) => {
