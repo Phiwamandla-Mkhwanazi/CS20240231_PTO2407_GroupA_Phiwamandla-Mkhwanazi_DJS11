@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import {Favourite} from './Favourite';
+import Favourite from './Favourite';
 import {Default} from './Default';
 import  useSearchStore  from '../stores/searchStore';
 
