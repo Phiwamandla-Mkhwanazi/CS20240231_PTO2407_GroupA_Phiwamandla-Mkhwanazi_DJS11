@@ -40,18 +40,18 @@ A modern podcast streaming application built with React, Zustand, and TypeScript
     ⚠️ Exit warning while playing audio
 
 
-##🛠 Installation
+#🛠 Installation
 
 Follow these steps to set up the project locally:
 
-###1. Clone the Repository
+#1. Clone the Repository
 
 ```bash
 git clone https://github.com/Phiwamandla-Mkhwanazi/CS20240231_PTO2407_GroupA_Phiwamandla-Mkhwanazi_DJS11.git
 cd podcast-app
 ```
 
-###2. Install Dependencies
+#2. Install Dependencies
 
 ```bash
 npm install
@@ -59,7 +59,7 @@ npm install
 yarn install
 ```
 
-###3. Run the App
+#3. Run the App
 
 ```bash
 npm run dev
