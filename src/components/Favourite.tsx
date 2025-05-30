@@ -23,7 +23,7 @@ export default function Favourite() {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [sortByTitle, setSortByTitle] = useState(false);
-  const [sortByDate, setSortByDate] = useState(false);
+  const [sortByDate, setSortByDate] = useState(true);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
   const handlePlay = (fav: FavouriteItem) => {
@@ -87,7 +87,7 @@ export default function Favourite() {
   };
 
   return (
-    <section className="hidden md:flex flex-col h-[calc(100vh-7.9rem)] px-2 relative">
+    <section className="hidden md:flex flex-col h-[calc(100vh-7.9rem)] px-2 relative bg-zinc-300">
       <div className="flex flex-col text-center px-7 py-2 overflow-hidden">
         <ul className="mb-2 text-lg text-[#595959] font-semibold">
           <li>Favourites</li>
@@ -115,7 +115,7 @@ export default function Favourite() {
           placeholder="Search favourites..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 border border-[#ccc] rounded px-3 py-1 text-sm w-1/2 focus:outline-none  focus:border-[#89AC46] transition-all duration-170"
+          className="flex-1 border border-[#89AC46] rounded px-3 py-1 text-sm w-1/2 focus:outline-none  focus:border-[#89AC46] transition-all duration-170"
         />
   <div className="flex gap-2">
   <button
