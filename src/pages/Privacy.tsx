@@ -1,5 +1,5 @@
-import { SlArrowLeft } from "react-icons/sl";
-import { NavLink, Outlet } from 'react-router-dom';
+import { SlArrowLeft } from "react-icons/sl";   // Import back arrow icon from react-icons library
+import { NavLink, Outlet } from 'react-router-dom'; // Import navigation and layout components from React Router
 
 export default function Privacy() {
   return (
