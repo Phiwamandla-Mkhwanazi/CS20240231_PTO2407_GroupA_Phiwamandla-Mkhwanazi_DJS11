@@ -26,7 +26,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="flex flex-wrap items-center justify-between gap-4 px-4 py-2.5 bg-white/10 backdrop-blur-md shadow-sm border-b border-white/10 max-w-screen-3xl">
+      <header className="flex flex-wrap items-center justify-between gap-4 px-4 py-2.5 bg-zinc-200 backdrop-blur-md shadow-sm border-b border-white/10 max-w-screen-3xl">
         
         {/* Logo */}
         <div className="flex items-center gap-3 flex-shrink-0">
