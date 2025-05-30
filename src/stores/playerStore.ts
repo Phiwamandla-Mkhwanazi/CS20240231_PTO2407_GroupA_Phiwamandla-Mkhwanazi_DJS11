@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-interface Episode {
+export interface Episode {
   id: string;
   title: string;
   file: string;
@@ -10,7 +10,9 @@ interface Episode {
   podcastTitle: string;
   season: number;
   episode: number;
+  description?: string; 
 }
+
 
 interface PlayerStore {
   currentEpisode: Episode | null;

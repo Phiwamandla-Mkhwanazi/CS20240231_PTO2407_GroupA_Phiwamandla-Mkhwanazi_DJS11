@@ -29,11 +29,14 @@ export default function Favourite() {
   const handlePlay = (fav: FavouriteItem) => {
     setEpisode({
       id: fav.uid,
-      podcastId: fav.podcastId,
-      title: fav.title ?? "Unknown Title",
-      file: fav.file ?? "",
-      image: fav.image ?? "",
-      description: fav.description ?? "" ,
+    podcastId: fav.podcastId,
+    title: fav.title ?? "Unknown Title",
+    file: fav.file ?? "",
+    image: fav.image ?? "",
+    podcastTitle: "Unknown Podcast",
+    season:  0,
+    episode:  0,
+      description: fav.description,
     });
   };
 
