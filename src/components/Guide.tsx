@@ -5,7 +5,7 @@ import { SlArrowLeft } from "react-icons/sl";
 export default function Guide() {
 
   return (
-    <section className="bg-[#d4d0d0] text-[#595959] h-full flex flex-col px-6 py-12">
+    <section className=" text-[#595959] h-full flex flex-col px-6 py-12">
       {/* Top Navigation */}
       <NavLink
         to="/"

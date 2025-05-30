@@ -174,7 +174,7 @@ export default function Search({ term = '', category = 'All Departments' }: Sear
   const visiblePodcasts = podcasts.slice(0, visibleCount);
 
   return (
-    <section className="w-full h-[calc(100vh-8.7em)] px-4 mt-3 overflow-y-auto space-y-6">
+    <section className="w-full h-full px-4 py-4 overflow-y-auto space-y-6 ">
       <SectionHeader
         title={`Results for "${term}" in "${category}"`}
         count={podcasts.length}

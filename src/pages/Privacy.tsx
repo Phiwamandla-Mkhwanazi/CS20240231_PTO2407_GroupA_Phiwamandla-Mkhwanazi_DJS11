@@ -3,7 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom'; // Import navigation and lay
 
 export default function Privacy() {
   return (
-    <section className="relative">
+    <section className="flex flex-col h-full ">
       {/* Back Navigation */}
      <NavLink
         to="/"
@@ -18,11 +18,11 @@ export default function Privacy() {
 
       {/* Header */}
       <div className="text-center text-[#595959]">
-        <h1 className="text-3xl font-bold mb-8">Privacy Policy</h1>
+        <h1 className="text-3xl font-bold mt-8">Privacy Policy</h1>
       </div>
 
       {/* Content */}
-      <div className="max-w-3xl mx-auto mt-10 px-6 text-justify space-y-6 text-[#595959] mb-4 text-base">
+      <div className="max-w-3xl mx-auto mt-16 px-6 text-justify space-y-6 text-[#595959]  text-base">
         <p>
           The platform encourages the use of strong, unique passwords that are separate from those used on other services, enhancing your account security. This reduces the risk of credential reuse, which is a common vulnerability exploited in cyber attacks.
         </p>

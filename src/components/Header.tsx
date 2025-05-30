@@ -8,7 +8,7 @@ export default function Header() {
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("All Departments");
   const [showResults, setShowResults] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false); // 🟢 new state for burger toggle
+  const [menuOpen, setMenuOpen] = useState(false); 
 
   const setSearch = useSearchStore((s) => s.setSearch);
   const navigate = useNavigate();
@@ -86,7 +86,7 @@ export default function Header() {
         <div className="md:hidden">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-gray-700 dark:text-gray-300 focus:outline-none"
+            className="text-[#595959] focus:outline-none"
             aria-label="Toggle menu"
           >
             <svg

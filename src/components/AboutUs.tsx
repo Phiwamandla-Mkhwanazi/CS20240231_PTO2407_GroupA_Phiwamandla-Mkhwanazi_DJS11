@@ -4,7 +4,7 @@ import { NavLink} from 'react-router-dom';
 
 export default function AboutUs() {
   return (
-    <section className="relative">
+    <section className="flex flex-col h-full ">
       {/* Back Navigation */}
       <NavLink
         to="/"
@@ -28,7 +28,7 @@ export default function AboutUs() {
       </div>
 
       {/* Content */}
-      <div className="max-w-3xl mx-auto mt-10 px-6 text-justify space-y-6 text-[#595959] mb-4">
+      <div className="max-w-3xl mx-auto mt-10 px-6 text-justify space-y-6 text-[#595959]">
         <h2 className="text-xl font-semibold">Hi, I’m Phiwamandla Mkhwanazi.</h2>
 
         <p>
@@ -67,7 +67,7 @@ export default function AboutUs() {
           This journey is as much about learning as it is about building. And every step is another node in a growing network of knowledge.
         </p>
         <p>
-                    <ul className="flex justify-center gap-6 text-3xl mt-2">
+                    <ul className="flex justify-center gap-6 text-3xl ">
           <li><a href="https://www.linkedin.com/in/phiwamandla-mkhwanazi-09734934b/" className="hover:text-[#89AC46]" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a></li>
           <li><a href="https://medium.com/@pm20pm45/about" className="hover:text-[#89AC46]" target="_blank" rel="noopener noreferrer"><i className="fab fa-medium"></i></a></li>
           <li><a href="https://github.com/phiwamandla-mkhwanazi/" className="hover:text-[#89AC46]" target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a></li>
