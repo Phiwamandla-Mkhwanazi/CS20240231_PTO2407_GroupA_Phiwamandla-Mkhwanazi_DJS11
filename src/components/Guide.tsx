@@ -28,7 +28,7 @@ export default function Guide() {
 
         {/* Download Button */}
         <a
-          href="/dev_guide_v1.0.zip"
+          href="/dev_guide.zip"
           download
           className="flex items-center gap-3 bg-[#89AC46] hover:bg-[#76a13e] transition-colors px-6 py-3 rounded-xl font-semibold text-white text-base shadow-md"
         >
