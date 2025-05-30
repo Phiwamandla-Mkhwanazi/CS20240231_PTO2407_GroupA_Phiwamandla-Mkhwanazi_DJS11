@@ -10,6 +10,14 @@ import {
 import usePlayerStore from '../stores/playerStore';
 import podImage from '../assets/img/podcast-neon-sign-glowing-studio-microphone-icon-vector-31076255.jpg';
 
+// Utility function for the component
+function formatTime(seconds: number): string {
+  if (!seconds || seconds < 0) return '0:00';
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs.toString().padStart(2, '0')}`;
+}
+
 export default function Footer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -186,18 +194,33 @@ export default function Footer() {
     </button>
   </div>
 
+ {/* Responsive time and seek bar */}
+<div className="flex items-center gap-3 ml-2 sm:ml-4">
+  {/* Current time */}
+  <span className="text-xs sm:text-sm text-gray-500 w-10 sm:w-12 tabular-nums">
+    {formatTime(progress)}
+  </span>
+
+  {/* Seek bar */}
   <input
     aria-label="Seek"
     type="range"
     min={0}
-    max={100}
+    max={duration}
     step={0.01}
     value={progress}
     onChange={handleProgressChange}
     onMouseUp={handleSeekEnd}
     onTouchEnd={handleSeekEnd}
-    className="w-full h-[3px] accent-[#89AC46] bg-gray-600 rounded-full cursor-pointer"
+    className="flex-grow h-2 sm:h-[3px] accent-[#89AC46] bg-gray-600 rounded-full cursor-pointer"
   />
+
+  {/* Time left */}
+  <span className="text-xs sm:text-sm text-gray-500 w-10 sm:w-12 tabular-nums ml-2 sm:ml-4">
+    -{formatTime(duration - progress)}
+  </span>
+</div>
+ 
 </div>
 
 
