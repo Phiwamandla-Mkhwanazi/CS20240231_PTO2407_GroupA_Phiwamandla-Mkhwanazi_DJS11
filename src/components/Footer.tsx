@@ -149,7 +149,7 @@ export default function Footer() {
   }, [isPlaying, stop, currentEpisode]);
 
 return (
-  <footer className="w-full bg-[#595959] text-white border-t border-white/10 px-4 sm:px-6 py-2 
+  <footer className="w-full bg-transparent text-white border-t border-white/10 px-4 sm:px-6 py-2  
     flex flex-col sm:grid grid-cols-1 md:grid-cols-[1fr_3fr_1fr] gap-1 items-center text-sm">
 
     <audio ref={audioRef} preload="metadata" />
@@ -163,8 +163,8 @@ return (
         loading="lazy"
       />
       <div className="overflow-hidden">
-        <h1 className="text-base truncate max-w-[160px] sm:max-w-[200px]">{title}</h1>
-        <p className="opacity-70 text-xs sm:text-sm truncate max-w-[250px] sm:max-w-[250px]">
+        <h1 className="text-base truncate max-w-[160px] sm:max-w-[200px] text-[#595959]">{title}</h1>
+        <p className="opacity-70 text-xs sm:text-sm truncate max-w-[250px] sm:max-w-[250px] text-[#595959]">
           {description}
         </p>
       </div>
@@ -174,10 +174,10 @@ return (
     <div className="flex flex-col gap-1 w-full max-w-xl">
 
       {/* Controls */}
-      <div className="flex justify-center gap-6 items-center">
+      <div className="flex justify-center gap-17 items-center">
         <button
           title="Skip Back 10s"
-          className="hover:text-[#89AC46] text-[#d4d0d0]"
+          className="hover:text-[#89AC46] text-[#595959]"
           onClick={() => skip(-10)}
         >
           <SkipBackIcon />
@@ -186,14 +186,14 @@ return (
         <button
           title={isPlaying ? 'Pause' : 'Play'}
           onClick={togglePlay}
-          className="hover:text-[#89AC46] text-[#d4d0d0]"
+          className="hover:text-[#89AC46] text-[#595959]"
         >
           {isPlaying ? <PauseIcon /> : <PlayIcon />}
         </button>
 
         <button
           title="Skip Forward 10s"
-          className="hover:text-[#89AC46] text-[#d4d0d0]"
+          className="hover:text-[#89AC46] text-[#595959]"
           onClick={() => skip(10)}
         >
           <SkipForwardIcon />
@@ -203,7 +203,7 @@ return (
       {/* Responsive time and seek bar */}
       <div className="flex items-center gap-2 sm:gap-3 px-1 sm:px-0 mt-1">
         {/* Current time */}
-        <span className="text-xs sm:text-sm text-gray-500 w-10 sm:w-12 tabular-nums flex-shrink-0">
+        <span className="text-xs sm:text-sm text-[#595959] w-10 sm:w-12 tabular-nums flex-shrink-0">
           {formatTime(progress)}
         </span>
 
@@ -222,7 +222,7 @@ return (
         />
 
         {/* Time left */}
-        <span className="text-xs sm:text-sm text-gray-500 w-10 sm:w-12 tabular-nums ml-1 sm:ml-2 flex-shrink-0">
+        <span className="text-xs sm:text-sm text-[#595959] w-10 sm:w-12 tabular-nums ml-1 sm:ml-2 flex-shrink-0">
           -{formatTime(duration - progress)}
         </span>
       </div>
@@ -233,7 +233,7 @@ return (
       <button
         title={muted ? 'Unmute' : 'Mute'}
         onClick={toggleMute}
-        className="hover:text-[#89AC46] text-[#d4d0d0]"
+        className="hover:text-[#89AC46] text-[#595959]"
       >
         {muted || volume === 0 ? <VolumeDownIcon /> : <VolumeUpIcon />}
       </button>

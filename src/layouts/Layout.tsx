@@ -10,7 +10,7 @@ export default function Layout()
 {
   return (
       // Container that uses flexbox to arrange header, main content, and footer vertically
-     <div className="flex flex-col h-screen overflow-hidden">
+     <div className="flex flex-col h-screen overflow-hidden bg-zinc-200">
       
       {/* ExitWarning component to alert users before leaving the page */}
       <ExitWarning />

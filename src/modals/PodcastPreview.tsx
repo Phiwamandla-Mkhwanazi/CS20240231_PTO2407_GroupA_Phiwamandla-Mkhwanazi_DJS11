@@ -168,7 +168,7 @@ export default function PodcastPreviewModal({ isOpen, onClose, podcast }: Podcas
       aria-modal="true"
       aria-labelledby="podcast-title"
     >
-      <div className="relative w-full max-w-5xl max-h-[90vh] bg-white rounded-3xl shadow-2xl p-6 overflow-hidden flex flex-col">
+      <div className="relative w-full max-w-5xl max-h-[90vh] bg-zinc-200 rounded-3xl shadow-2xl p-6 overflow-hidden flex flex-col">
         <button
           onClick={onClose}
           aria-label="Close Modal"
@@ -229,7 +229,7 @@ export default function PodcastPreviewModal({ isOpen, onClose, podcast }: Podcas
                 return (
                   <div
                     key={uid}
-                    className="bg-white border border-gray-200 shadow-md hover:shadow-xl rounded-2xl p-4 flex flex-col justify-between transition-all"
+                    className="bg-zinc-100 border border-gray-200 shadow-md hover:shadow-xl rounded-2xl p-4 flex flex-col justify-between transition-all"
                   >
                     <div>
                       <h3
