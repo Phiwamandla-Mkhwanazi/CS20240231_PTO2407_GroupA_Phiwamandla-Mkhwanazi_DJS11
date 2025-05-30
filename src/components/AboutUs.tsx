@@ -4,7 +4,8 @@ import { NavLink} from 'react-router-dom';
 
 export default function AboutUs() {
   return (
-    <section className="flex flex-col h-full ">
+    <div className='relative h-[600px] max-w-1xl mx-auto overflow-y-auto'>
+ <section className="flex flex-col h-full ">
       {/* Back Navigation */}
       <NavLink
         to="/"
@@ -76,5 +77,7 @@ export default function AboutUs() {
         </p>
       </div>
     </section>
+    </div>
+   
   );
 }

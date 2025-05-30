@@ -3,7 +3,8 @@ import { NavLink, Outlet } from 'react-router-dom'; // Import navigation and lay
 
 export default function Privacy() {
   return (
-    <section className="flex flex-col h-full ">
+    <div className="relative h-[40rem] max-w-1xl mx-auto overflow-y-auto">
+ <section className="flex flex-col h-full ">
       {/* Back Navigation */}
      <NavLink
         to="/"
@@ -58,5 +59,7 @@ export default function Privacy() {
 
       <Outlet />
     </section>
+    </div>
+   
   );
 }
