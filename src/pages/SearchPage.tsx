@@ -9,8 +9,12 @@ function SearchPage() {
   const term = params.get('term') || '';
   const category = params.get('category') || 'All Departments';
 
+  const handleCloseSearch = () => {
+  // logic to hide or reset the Search component
+  console.log("Closing search");
+};
   return (
-            <Search term={term} category={category}/>
+            <Search term={term} category={category} onClose={handleCloseSearch}/>
   );
 }
 

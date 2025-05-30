@@ -17,6 +17,7 @@ interface Podcast {
 interface SearchProps {
   term?: string;
   category?: string;
+    onClose: () => void; 
 }
 
 interface SectionHeaderProps {
