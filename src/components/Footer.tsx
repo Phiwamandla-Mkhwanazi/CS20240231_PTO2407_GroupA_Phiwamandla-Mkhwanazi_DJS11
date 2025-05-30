@@ -148,107 +148,107 @@ export default function Footer() {
     }
   }, [isPlaying, stop, currentEpisode]);
 
-  return (
-    <footer className="w-full bg-[#595959] text-white border-t border-white/10 px-6 py-2 sm:grid grid-cols-1 md:grid-cols-[1fr_3fr_1fr] gap-4 items-center text-sm">
-      <audio ref={audioRef} preload="metadata" />
+return (
+  <footer className="w-full bg-[#595959] text-white border-t border-white/10 px-4 sm:px-6 py-2 
+    flex flex-col sm:grid grid-cols-1 md:grid-cols-[1fr_3fr_1fr] gap-1 items-center text-sm">
 
-      {/* Left - Podcast image and title */}
-      <div className="flex items-center gap-4">
-        <img
-          src={image}
-          alt={title}
-          className="w-12 h-12 rounded-md object-cover"
-          loading="lazy"
-        />
-        <div>
-          <h1 className="text-base truncate max-w-[200px] ">{title}</h1>
-          <p className="opacity-70">{description}</p>
-        </div>
+    <audio ref={audioRef} preload="metadata" />
+
+    {/* Left - Podcast image and title */}
+    <div className="flex items-center gap-3 sm:gap-4 w-full md:w-auto">
+      <img
+        src={image}
+        alt={title}
+        className="w-12 h-12 rounded-md object-cover flex-shrink-0"
+        loading="lazy"
+      />
+      <div className="overflow-hidden">
+        <h1 className="text-base truncate max-w-[160px] sm:max-w-[200px]">{title}</h1>
+        <p className="opacity-70 text-xs sm:text-sm truncate max-w-[250px] sm:max-w-[250px]">
+          {description}
+        </p>
+      </div>
+    </div>
+
+    {/* Center - Playback controls + progress */}
+    <div className="flex flex-col gap-1 w-full max-w-xl">
+
+      {/* Controls */}
+      <div className="flex justify-center gap-6 items-center">
+        <button
+          title="Skip Back 10s"
+          className="hover:text-[#89AC46] text-[#d4d0d0]"
+          onClick={() => skip(-10)}
+        >
+          <SkipBackIcon />
+        </button>
+
+        <button
+          title={isPlaying ? 'Pause' : 'Play'}
+          onClick={togglePlay}
+          className="hover:text-[#89AC46] text-[#d4d0d0]"
+        >
+          {isPlaying ? <PauseIcon /> : <PlayIcon />}
+        </button>
+
+        <button
+          title="Skip Forward 10s"
+          className="hover:text-[#89AC46] text-[#d4d0d0]"
+          onClick={() => skip(10)}
+        >
+          <SkipForwardIcon />
+        </button>
       </div>
 
-   {/* Center - Playback controls + progress */}
-<div className="flex flex-col gap-1">
-  <div className="flex justify-center gap-6 items-center">
-    <button
-      title="Skip Back 10s"
-      className="hover:text-[#89AC46] text-[#d4d0d0]"
-      onClick={() => skip(-10)}
-    >
-      <SkipBackIcon />
-    </button>
+      {/* Responsive time and seek bar */}
+      <div className="flex items-center gap-2 sm:gap-3 px-1 sm:px-0 mt-1">
+        {/* Current time */}
+        <span className="text-xs sm:text-sm text-gray-500 w-10 sm:w-12 tabular-nums flex-shrink-0">
+          {formatTime(progress)}
+        </span>
 
-    <button
-      title={isPlaying ? 'Pause' : 'Play'}
-      onClick={togglePlay}
-      className="hover:text-[#89AC46] text-[#d4d0d0]"
-    >
-      {isPlaying ? <PauseIcon  /> : <PlayIcon  />}
-    </button>
+        {/* Seek bar */}
+        <input
+          aria-label="Seek"
+          type="range"
+          min={0}
+          max={duration}
+          step={0.01}
+          value={progress}
+          onChange={handleProgressChange}
+          onMouseUp={handleSeekEnd}
+          onTouchEnd={handleSeekEnd}
+          className="flex-grow h-2 sm:h-[3px] accent-[#89AC46] bg-gray-600 rounded-full cursor-pointer"
+        />
 
-    <button
-      title="Skip Forward 10s"
-      className="hover:text-[#89AC46] text-[#d4d0d0]"
-      onClick={() => skip(10)}
-    >
-      <SkipForwardIcon  />
-    </button>
-  </div>
+        {/* Time left */}
+        <span className="text-xs sm:text-sm text-gray-500 w-10 sm:w-12 tabular-nums ml-1 sm:ml-2 flex-shrink-0">
+          -{formatTime(duration - progress)}
+        </span>
+      </div>
+    </div>
 
- {/* Responsive time and seek bar */}
-<div className="flex items-center gap-3 ml-2 sm:ml-4">
-  {/* Current time */}
-  <span className="text-xs sm:text-sm text-gray-500 w-10 sm:w-12 tabular-nums">
-    {formatTime(progress)}
-  </span>
+    {/* Right - Volume */}
+    <div className="hidden md:flex items-center gap-4 justify-end min-w-[120px]">
+      <button
+        title={muted ? 'Unmute' : 'Mute'}
+        onClick={toggleMute}
+        className="hover:text-[#89AC46] text-[#d4d0d0]"
+      >
+        {muted || volume === 0 ? <VolumeDownIcon /> : <VolumeUpIcon />}
+      </button>
+      <input
+        aria-label="Volume"
+        type="range"
+        min={0}
+        max={100}
+        step={1}
+        value={muted ? 0 : volume * 100}
+        onChange={handleVolumeChange}
+        className="w-16 sm:w-20 h-[3px] accent-[#89AC46] bg-gray-600 rounded-full cursor-pointer"
+      />
+    </div>
+  </footer>
+);
 
-  {/* Seek bar */}
-  <input
-    aria-label="Seek"
-    type="range"
-    min={0}
-    max={duration}
-    step={0.01}
-    value={progress}
-    onChange={handleProgressChange}
-    onMouseUp={handleSeekEnd}
-    onTouchEnd={handleSeekEnd}
-    className="flex-grow h-2 sm:h-[3px] accent-[#89AC46] bg-gray-600 rounded-full cursor-pointer"
-  />
-
-  {/* Time left */}
-  <span className="text-xs sm:text-sm text-gray-500 w-10 sm:w-12 tabular-nums ml-2 sm:ml-4">
-    -{formatTime(duration - progress)}
-  </span>
-</div>
- 
-</div>
-
-
-      {/* Right - Volume */}
-<div className="flex items-center gap-4 justify-end">
-  <button
-    title={muted ? 'Unmute' : 'Mute'}
-    onClick={toggleMute}
-    className="hover:text-[#89AC46] text-[#d4d0d0]"
-  >
-    {muted || volume === 0 ? (
-      <VolumeDownIcon />
-    ) : (
-      <VolumeUpIcon  />
-    )}
-  </button>
-  <input
-    aria-label="Volume"
-    type="range"
-    min={0}
-    max={100}
-    step={1}
-    value={muted ? 0 : volume * 100}
-    onChange={handleVolumeChange}
-    className="w-20 h-[3px] accent-[#89AC46] bg-gray-600 rounded-full cursor-pointer"
-  />
-</div>
-
-    </footer>
-  );
 }
