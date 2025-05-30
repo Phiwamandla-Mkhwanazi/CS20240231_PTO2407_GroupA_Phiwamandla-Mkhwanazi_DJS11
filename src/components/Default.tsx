@@ -66,7 +66,7 @@ export function Default() {
   );
 
   const handleShift =
-    (currentStart: number, setStart: React.Dispatch<React.SetStateAction<number>>) =>
+    (setStart: React.Dispatch<React.SetStateAction<number>>) =>
     ({ type }: { type: 'next' | 'prev' }) => {
       setStart((prev) => {
         const maxOffset = maxShifts;
@@ -92,8 +92,8 @@ export function Default() {
       {/* 🎙 Recommended */}
       <Section
         title="Recommended Podcasts"
-        onNext={handleShift(recommendedStart, setRecommendedStart).bind(null, { type: 'next' })}
-        onPrev={handleShift(recommendedStart, setRecommendedStart).bind(null, { type: 'prev' })}
+        onNext={handleShift(setRecommendedStart).bind(null, { type: 'next' })}
+        onPrev={handleShift(setRecommendedStart).bind(null, { type: 'prev' })}
         disablePrev={recommendedStart === 0}
         disableNext={recommendedStart >= maxShifts}
       >
@@ -111,8 +111,8 @@ export function Default() {
       {/* 🔥 Trending */}
       <Section
         title="Trending Podcasts"
-        onNext={handleShift(trendingStart, setTrendingStart).bind(null, { type: 'next' })}
-        onPrev={handleShift(trendingStart, setTrendingStart).bind(null, { type: 'prev' })}
+        onNext={handleShift( setTrendingStart).bind(null, { type: 'next' })}
+        onPrev={handleShift( setTrendingStart).bind(null, { type: 'prev' })}
         disablePrev={trendingStart === 0}
         disableNext={trendingStart >= maxShifts}
       >
@@ -130,8 +130,8 @@ export function Default() {
       {/* 🕒 Latest */}
       <Section
         title="Latest Podcasts"
-        onNext={handleShift(latestStart, setLatestStart).bind(null, { type: 'next' })}
-        onPrev={handleShift(latestStart, setLatestStart).bind(null, { type: 'prev' })}
+        onNext={handleShift( setLatestStart).bind(null, { type: 'next' })}
+        onPrev={handleShift( setLatestStart).bind(null, { type: 'prev' })}
         disablePrev={latestStart === 0}
         disableNext={latestStart >= maxShifts}
       >
