@@ -7,13 +7,19 @@ import { BackArrowIcon, ForwardArrowIcon } from './Icons';
 
 const API_URL = 'https://podcast-api.netlify.app/shows';
 
-const PodcastThumbnail = ({
-  image,
-  onClick,
-}: {
+type Podcast = {
+  id: string;
+  image: string;
+  updated: string;
+  key: string; 
+};
+
+type PodcastThumbnailProps = {
   image: string;
   onClick: () => void;
-}) => (
+};
+
+const PodcastThumbnail = ({ image, onClick }: PodcastThumbnailProps) => (
   <div
     onClick={onClick}
     className="relative group h-[100px] w-[100px] rounded-[20px] overflow-hidden shadow-xl cursor-pointer transition-transform duration-300 hover:scale-105"
@@ -22,20 +28,18 @@ const PodcastThumbnail = ({
       src={image}
       alt="thumbnail"
       className="w-full h-full object-cover rounded-[20px]"
+      loading="lazy"
     />
     <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity">
       <MdPlayCircleFilled className="text-white text-4xl drop-shadow-lg" />
     </div>
   </div>
 );
-;
 
-export function Default()
-{
-
-      const [showModal, setShowModal] = useState(false);
-  const [selectedPodcast, setSelectedPodcast] = useState(null);
-  const [podcasts, setPodcasts] = useState([]);
+export function Default() {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedPodcast, setSelectedPodcast] = useState<Podcast | null>(null);
+  const [podcasts, setPodcasts] = useState<Podcast[]>([]);
 
   const [recommendedStart, setRecommendedStart] = useState(0);
   const [trendingStart, setTrendingStart] = useState(0);
@@ -51,27 +55,28 @@ export function Default()
       .catch((err) => console.error('Failed to fetch podcasts:', err));
   }, []);
 
-  const openPodcast = (podcast) => {
+  const openPodcast = (podcast: Podcast) => {
     setSelectedPodcast(podcast);
     setShowModal(true);
   };
 
+  // Sort podcasts by updated date descending
   const sortedByUpdated = [...podcasts].sort(
-  (a, b) => new Date(b.updated).getTime() - new Date(a.updated).getTime()
-);
+    (a, b) => new Date(b.updated).getTime() - new Date(a.updated).getTime()
+  );
 
+  const handleShift =
+    (currentStart: number, setStart: React.Dispatch<React.SetStateAction<number>>) =>
+    ({ type }: { type: 'next' | 'prev' }) => {
+      setStart((prev) => {
+        const maxOffset = maxShifts;
+        const newStart = type === 'next' ? prev + 1 : prev - 1;
+        return Math.max(0, Math.min(newStart, maxOffset));
+      });
+    };
 
-  const handleShift = (currentStart, setStart) => ({ type }) => {
-    setStart((prev) => {
-      const maxOffset = maxShifts;
-      const newStart = type === 'next' ? prev + 1 : prev - 1;
-      return Math.max(0, Math.min(newStart, maxOffset));
-    });
-  };
-
-  
-    return(
-            <section className="md:w-full h-[calc(100vh-8.7em)] px-2 mt-3 space-y-8 overflow-y-auto">
+  return (
+    <section className="md:w-full h-[calc(100vh-8.7em)] px-2 mt-3 space-y-8 overflow-y-auto">
       {/* 🎧 Hero */}
       <div
         className="relative group flex justify-end items-end min-h-[300px] bg-cover bg-center bg-no-repeat rounded-lg py-8 px-4"
@@ -151,21 +156,39 @@ export function Default()
         podcast={selectedPodcast}
       />
     </section>
-    );
+  );
 }
 
-
 // 🧩 Section Container
-const Section = ({ title, children, onNext, onPrev, disableNext, disablePrev }) => (
+type SectionProps = {
+  title: string;
+  children: React.ReactNode;
+  onNext?: () => void;
+  onPrev?: () => void;
+  disableNext?: boolean;
+  disablePrev?: boolean;
+};
+
+const Section = ({ title, children, onNext, onPrev, disableNext, disablePrev }: SectionProps) => (
   <>
     <div className="flex justify-between items-center px-4">
       <h2 className="text-xl font-bold text-[#595959]">{title}</h2>
       {onNext && onPrev && (
         <div className="flex items-center gap-2 text-[#595959]">
-          <button onClick={onPrev} disabled={disablePrev} className={`hover:text-[#89AC46] ${disablePrev ? 'opacity-30 cursor-not-allowed' : ''}`}>
+          <button
+            onClick={onPrev}
+            disabled={disablePrev}
+            className={`hover:text-[#89AC46] ${disablePrev ? 'opacity-30 cursor-not-allowed' : ''}`}
+            aria-label={`Previous ${title}`}
+          >
             <BackArrowIcon />
           </button>
-          <button onClick={onNext} disabled={disableNext} className={`hover:text-[#89AC46] ${disableNext ? 'opacity-30 cursor-not-allowed' : ''}`}>
+          <button
+            onClick={onNext}
+            disabled={disableNext}
+            className={`hover:text-[#89AC46] ${disableNext ? 'opacity-30 cursor-not-allowed' : ''}`}
+            aria-label={`Next ${title}`}
+          >
             <ForwardArrowIcon />
           </button>
         </div>
@@ -188,7 +211,7 @@ const ExploreTags = () => {
     'Kids and Family',
   ];
 
-  const handleClick = (category) => {
+  const handleClick = (category: string) => {
     navigate(`/search?term=&category=${encodeURIComponent(category)}`);
   };
 
