@@ -8,7 +8,7 @@ export default function Header() {
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("All Departments");
   const [showResults, setShowResults] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // 🟢 new state for burger toggle
 
   const setSearch = useSearchStore((s) => s.setSearch);
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function Header() {
     if (searchTerm.trim()) {
       setSearch(searchTerm, category);
       navigate(`/search?term=${encodeURIComponent(searchTerm)}&category=${encodeURIComponent(category)}`);
-      setMenuOpen(false);
+      setMenuOpen(false); // close menu on submit
     }
   };
 
@@ -26,7 +26,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="flex flex-wrap items-center justify-between gap-4 px-4 py-2.5 bg-white/10 backdrop-blur-md shadow-sm border-b border-white/10 max-w-screen-3xl w-full">
+      <header className="flex flex-wrap items-center justify-between gap-4 px-4 py-2.5 bg-white/10 backdrop-blur-md shadow-sm border-b border-white/10 max-w-screen-3xl">
         
         {/* Logo */}
         <div className="flex items-center gap-3 flex-shrink-0">
@@ -36,10 +36,56 @@ export default function Header() {
           </h1>
         </div>
 
+        {/* Search Bar */}
+        <form
+          onSubmit={handleSearch}
+          className="hidden md:flex items-center gap-3 bg-white/90 px-4 py-1 rounded-full shadow-sm border border-gray-200 focus-within:ring-2 focus-within:ring-[#89AC46] transition-all duration-200 w-full md:w-auto md:max-w-3xl 2xl:max-w-6xl flex-1"
+        >
+          <select
+            name="categories"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="bg-transparent text-[#595959] text-sm font-medium px-2 py-1 rounded-md focus:outline-none"
+          >
+            {[
+              "All Departments", "Personal Growth", "Investigative Journalism",
+              "History", "Comedy", "Entertainment", "Business",
+              "Fiction", "News", "Kids and Family"
+            ].map((dept) => (
+              <option key={dept} value={dept}>{dept}</option>
+            ))}
+          </select>
+
+          <input
+            type="search"
+            placeholder="Search for podcasts..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="flex-1 min-w-[8rem] bg-transparent text-sm text-[#595959] placeholder-gray-400 px-2 py-1 border-l border-gray-300 focus:outline-none"
+            aria-label="Search podcasts"
+          />
+
+          <button
+            type="submit"
+            className="bg-[#89AC46] hover:bg-[#76a13e] text-white text-sm font-semibold px-4 py-1 rounded-full shadow-md hover:shadow-lg transition"
+          >
+            Search
+          </button>
+        </form>
+
+        {/* Auth Button */}
+        <button
+          className="hidden sm:md:flex xl:flex items-center gap-2 bg-[#89AC46] hover:bg-[#76a13e] text-white font-medium px-4 py-1 rounded-full shadow hover:shadow-md transition"
+          title="Login/Register"
+        >
+          <i className="material-icons text-base" aria-hidden="true">lock_open</i>
+          Sign in
+        </button>
+
         {/* Burger menu (small screens only) */}
         <div className="md:hidden">
           <button
-            onClick={() => setMenuOpen((prev) => !prev)}
+            onClick={() => setMenuOpen(!menuOpen)}
             className="text-gray-700 dark:text-gray-300 focus:outline-none"
             aria-label="Toggle menu"
           >
@@ -56,58 +102,12 @@ export default function Header() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
-          </button>
-        </div>
-
-        {/* Desktop search + auth */}
-        <div className="hidden md:flex items-center gap-4 flex-1">
-          <form
-            onSubmit={handleSearch}
-            className="flex items-center gap-3 bg-white/90 px-4 py-1 rounded-full shadow-sm border border-gray-200 focus-within:ring-2 focus-within:ring-[#89AC46] transition-all duration-200 w-full md:w-auto md:max-w-3xl 2xl:max-w-6xl flex-1"
-          >
-            <select
-              name="categories"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="bg-transparent text-[#595959] text-sm font-medium px-2 py-1 rounded-md focus:outline-none"
-            >
-              {[
-                "All Departments", "Personal Growth", "Investigative Journalism",
-                "History", "Comedy", "Entertainment", "Business",
-                "Fiction", "News", "Kids and Family"
-              ].map((dept) => (
-                <option key={dept} value={dept}>{dept}</option>
-              ))}
-            </select>
-
-            <input
-              type="search"
-              placeholder="Search for podcasts..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="flex-1 min-w-[8rem] bg-transparent text-sm text-[#595959] placeholder-gray-400 px-2 py-1 border-l border-gray-300 focus:outline-none"
-              aria-label="Search podcasts"
-            />
-
-            <button
-              type="submit"
-              className="bg-[#89AC46] hover:bg-[#76a13e] text-white text-sm font-semibold px-4 py-1 rounded-full shadow-md hover:shadow-lg transition"
-            >
-              Search
-            </button>
-          </form>
-
-          <button
-            className="items-center gap-2 bg-[#89AC46] hover:bg-[#76a13e] text-white font-medium px-4 py-1 rounded-full shadow hover:shadow-md transition"
-            title="Login/Register"
-          >
-            <i className="material-icons text-base" aria-hidden="true">lock_open</i>
-            Sign in
+            {/* Add Icon */}
           </button>
         </div>
       </header>
 
-      {/* Mobile menu: shown only if menuOpen is true */}
+      {/* Mobile menu (visible only when burger is open) */}
       {menuOpen && (
         <div className="md:hidden flex flex-col gap-4 px-4 pb-4">
           <form
@@ -156,7 +156,7 @@ export default function Header() {
         </div>
       )}
 
-      {/* Optional search results */}
+      {/* Conditional Search Results */}
       {showResults && (
         <SearchResults
           term={searchTerm}
