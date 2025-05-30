@@ -28,10 +28,10 @@ export default function Footer() {
   const seasonEpisode = currentEpisode?.id?.split('-') || ['0', '0', '0'];
 
   const {
-    audioSrc = currentEpisode?.file,
+    file = currentEpisode?.file,
     title = currentEpisode?.title,
-    episodeTitle = `S${seasonEpisode[1]} - E${1 + Number(seasonEpisode[2])}`,
-    imageSrc = currentEpisode?.image || podImage,
+    description = `S${seasonEpisode[1]} - E${1 + Number(seasonEpisode[2])}`,
+    image = currentEpisode?.image || podImage,
   } = currentEpisode || {};
 
   const [progress, setProgress] = useState(0);
@@ -112,16 +112,16 @@ export default function Footer() {
   // Load new episode audio and reset progress + seek to stored currentTime
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio || !audioSrc || !currentEpisode) return;
+    if (!audio || !file || !currentEpisode) return;
 
-    audio.src = audioSrc;
+    audio.src = file;
     audio.load();
 
     // On new episode, seek audio to saved currentTime from store
     audio.currentTime = usePlayerStore.getState().currentTime || 0;
 
     setProgress((audio.currentTime / audio.duration) * 100 || 0);
-  }, [audioSrc, currentEpisode]);
+  }, [file, currentEpisode]);
 
   // Play/pause audio on isPlaying changes
   useEffect(() => {
@@ -147,14 +147,14 @@ export default function Footer() {
       {/* Left - Podcast image and title */}
       <div className="flex items-center gap-4">
         <img
-          src={imageSrc}
+          src={image}
           alt={title}
           className="w-12 h-12 rounded-md object-cover"
           loading="lazy"
         />
         <div>
           <h1 className="text-base truncate max-w-[200px] ">{title}</h1>
-          <p className="opacity-70">{episodeTitle}</p>
+          <p className="opacity-70">{description}</p>
         </div>
       </div>
 
