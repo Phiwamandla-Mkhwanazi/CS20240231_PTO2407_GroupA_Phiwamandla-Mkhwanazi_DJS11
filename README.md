@@ -40,9 +40,13 @@ A modern podcast streaming application built with React, Zustand, and TypeScript
     ⚠️ Exit warning while playing audio
 
 
-🛠 Installation
-1. Clone the Repository
+##🛠 Installation
 
+Follow these steps to set up the project locally:
+
+###1. Clone the Repository
+
+```bash
 git clone https://github.com/Phiwamandla-Mkhwanazi/CS20240231_PTO2407_GroupA_Phiwamandla-Mkhwanazi_DJS11.git
 cd podcast-app
 
@@ -58,7 +62,7 @@ npm run dev
 # or
 yarn dev
 
-# 💿 PORTFOLIO PIECE | PODCAST APP 🎵 
+ 💿 PORTFOLIO PIECE | PODCAST APP 🎵 
 [DJS11] Starter Instructions for the Final Portfolio Piece Submission 🚀
 
 <!-- omit in toc -->
